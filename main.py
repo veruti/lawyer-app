@@ -3,6 +3,7 @@ from flet import Page
 
 from appbar import LayerAppBar
 from applayout import AppLayout
+from sidebar import LayerAppSidebar
 
 
 class LayerApp:
@@ -10,8 +11,9 @@ class LayerApp:
         self.page = page
         self.page.on_keyboard_event = lambda e: self._close_app() if e.ctrl & (e.key == "Q") else ...
         self.appbar = LayerAppBar(self.page)
+        self.sidebar = LayerAppSidebar(page)
 
-        self.layout = AppLayout(page)
+        self.layout = AppLayout(page, sidebar=self.sidebar)
         self.page.appbar = self.appbar
         self.page.add(self.layout)
         self.page.update()
@@ -21,10 +23,10 @@ class LayerApp:
 
 
 def main(page: Page):
-    # page.padding = 0
-    # page.fonts = {"Pacifico": "/Pacifico-Regular.ttf"}
-    # page.bgcolor = ft.colors.BLUE_GREY_200
-    # page.update()
+    page.padding = 0
+    page.fonts = {"Pacifico": "/Pacifico-Regular.ttf"}
+    page.bgcolor = ft.colors.BLUE_GREY_200
+    page.update()
     LayerApp(page)
     page.update()
 
