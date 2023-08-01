@@ -1,4 +1,4 @@
-from flet import Column, Control, CrossAxisAlignment, IconButton, MainAxisAlignment, Page, Row, Text, colors, icons
+from flet import Column, Control, CrossAxisAlignment, IconButton, MainAxisAlignment, Page, Row, Text, icons
 
 from sidebar import LayerAppSidebar
 

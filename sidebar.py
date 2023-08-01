@@ -1,14 +1,4 @@
-from flet import (
-    Divider,
-    Icon,
-    NavigationRail,
-    NavigationRailDestination,
-    NavigationRailLabelType,
-    Row,
-    Text,
-    colors,
-    icons,
-)
+from flet import Icon, NavigationRail, NavigationRailDestination, Text, colors, icons
 
 
 class LayerAppSidebar(NavigationRail):
