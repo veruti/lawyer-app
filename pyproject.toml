@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "lawyer-app"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "lawyer_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flet = "^0.8.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 119
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | tmp
+)/
+'''
+
+[tool.isort]
+line_length = 119
+profile = "black"
+
+[tool.pyright]
+pythonVersion = '3.10'

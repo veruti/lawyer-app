@@ -1,0 +1,33 @@
+default_language_version:
+  python: python3.10
+
+repos:
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.10.1
+    hooks:
+    - id: pyupgrade
+      
+  # Only for removing unused imports 
+  - repo: https://github.com/myint/autoflake
+    rev: "v2.2.0" # Version to check
+    hooks:
+      - id: autoflake
+        args:
+          - --in-place
+          - --remove-all-unused-imports
+          - --ignore-init-module-imports
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: 
+         - --profile black
+         
+
+  - repo: https://github.com/ambv/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+
