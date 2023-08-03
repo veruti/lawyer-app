@@ -1,31 +1,34 @@
-from flet import Column, Control, CrossAxisAlignment, IconButton, MainAxisAlignment, Page, Row, Text, icons
+from flet import CrossAxisAlignment, IconButton, MainAxisAlignment, Page, Row, Text, icons
 
 from sidebar import LayerAppSidebar
 
 
 class AppLayout(Row):
     def __init__(self, page: Page, sidebar: LayerAppSidebar, *args, **kwargs):
-        super().__init__(*args, **kwargs)
         self.page = page
-        self.sidebar = sidebar
 
-        self.toggle_button = ToggleButton(page, self)
-        self._active_view: Control = Column(
-            controls=[Text("Active View")],
+        self._sidebar = sidebar
+        self._toggle_button = ToggleButton(page, self)
+        self._active_view = Text("Active View")
+
+        super().__init__(
+            controls=[self._sidebar, self._toggle_button, self._active_view],
             alignment=MainAxisAlignment.START,
-            horizontal_alignment=CrossAxisAlignment.START,
+            vertical_alignment=CrossAxisAlignment.START,
+            height=page.window_height,
+            width=page.window_height,
+            *args,
+            **kwargs
         )
 
-        self.controls = [self.sidebar, self.toggle_button, self.active_view]
 
-    @property
-    def active_view(self):
-        return self._active_view
-
-    @active_view.setter
-    def active_view(self, view):
-        self._active_view = view
-        self.update()
+class AppLayouts:
+    def __init__(self) -> None:
+        self.layouts = [
+            Text("Active View 1"),
+            Text("Active View 2"),
+            Text("Active View 3"),
+        ]
 
 
 class ToggleButton(IconButton):
@@ -43,6 +46,6 @@ class ToggleButton(IconButton):
         )
 
     def toggle_nav_rail(self, _):
-        self.app_layout.sidebar.visible = not self.app_layout.sidebar.visible
-        self.app_layout.toggle_button.selected = not self.app_layout.toggle_button.selected
+        self.app_layout._sidebar.visible = not self.app_layout._sidebar.visible
+        self.app_layout._toggle_button.selected = not self.app_layout._toggle_button.selected
         self.page.update()

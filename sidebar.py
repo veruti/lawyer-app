@@ -1,4 +1,4 @@
-from flet import Icon, NavigationRail, NavigationRailDestination, Page, Text, icons
+from flet import Icon, NavigationRail, NavigationRailDestination, Page, Text, colors, icons
 
 
 class LayerAppSidebar(NavigationRail):
@@ -19,23 +19,20 @@ class LayerAppSidebar(NavigationRail):
 
         super().__init__(
             destinations=self.destinations,
-            height=500,
             selected_index=0,
-            extended=True,
-            min_width=100,
             on_change=lambda e: print("Selected destination:", e.control.selected_index),
             *args,
             **kwargs,
         )
 
-        # self.top_nav_rail = NavigationRail(
-        #     selected_index=None,
-        #     on_change=self.top_nav_change,
-        #     destinations=self.destinations,
-        #     bgcolor=colors.BLUE_GREY,
-        #     extended=True,
-        #     expand=True,
-        # )
+        self.top_nav_rail = NavigationRail(
+            selected_index=None,
+            on_change=self.top_nav_change,
+            destinations=self.destinations,
+            bgcolor=colors.BLUE_GREY,
+            extended=True,
+            expand=True,
+        )
 
     def top_nav_change(self, e):
         self.top_nav_rail.selected_index = e.control.selected_index
