@@ -1,6 +1,6 @@
 from flet import CrossAxisAlignment, IconButton, MainAxisAlignment, Page, Row, Text, icons
 
-from sidebar import LayerAppSidebar
+from src.sidebar import LayerAppSidebar
 
 
 class AppLayout(Row):
