@@ -1,25 +1,7 @@
 import flet as ft
 from flet import Page
 
-from appbar import LayerAppBar
-from applayout import AppLayout
-from sidebar import LayerAppSidebar
-
-
-class LayerApp:
-    def __init__(self, page: Page):
-        self.page = page
-        self.page.on_keyboard_event = lambda e: self._close_app() if e.ctrl & (e.key == "Q") else ...
-        self.appbar = LayerAppBar(self.page)
-        self.sidebar = LayerAppSidebar(page)
-
-        self.layout = AppLayout(page, sidebar=self.sidebar)
-        self.page.appbar = self.appbar
-        self.page.add(self.layout)
-        self.page.update()
-
-    def _close_app(self):
-        self.page.window_close()
+from src.app import LawyerApp
 
 
 def main(page: Page):
@@ -27,7 +9,8 @@ def main(page: Page):
     page.fonts = {"Pacifico": "/Pacifico-Regular.ttf"}
     page.bgcolor = ft.colors.BLUE_GREY_200
     page.update()
-    LayerApp(page)
+    LawyerApp(page)
+
     page.update()
 
 
