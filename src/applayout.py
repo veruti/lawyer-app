@@ -4,15 +4,22 @@ from src.sidebar import LayerAppSidebar
 
 
 class AppLayout(Row):
-    def __init__(self, page: Page, sidebar: LayerAppSidebar, *args, **kwargs):
+    def __init__(self, page: Page, *args, **kwargs):
         self.page = page
+        self._views = [
+            Text("Active View 1"),
+            Text("Active View 2"),
+            Text("Active View 3"),
+            Text("Active View 4"),
+        ]
+        for view in self._views:
+            view.visible = False
 
-        self._sidebar = sidebar
+        self._sidebar = LayerAppSidebar(page, self._views)
         self._toggle_button = ToggleButton(page, self)
-        self._active_view = Text("Active View")
 
         super().__init__(
-            controls=[self._sidebar, self._toggle_button, self._active_view],
+            controls=[self._sidebar, self._toggle_button, *self._views],
             alignment=MainAxisAlignment.START,
             vertical_alignment=CrossAxisAlignment.START,
             height=page.window_height,
@@ -20,15 +27,6 @@ class AppLayout(Row):
             *args,
             **kwargs
         )
-
-
-class AppLayouts:
-    def __init__(self) -> None:
-        self.layouts = [
-            Text("Active View 1"),
-            Text("Active View 2"),
-            Text("Active View 3"),
-        ]
 
 
 class ToggleButton(IconButton):
