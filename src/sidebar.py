@@ -21,7 +21,6 @@ class LayerAppSidebar(NavigationRail):
 
         super().__init__(
             destinations=self.destinations,
-            selected_index=0,
             on_change=lambda e: self._on_change(e, self),
             *args,
             **kwargs,
