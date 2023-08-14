@@ -65,11 +65,17 @@ class ShowTable(QTableWidget):
         self.setRowCount(len(repo.get_all()))
         self.setColumnCount(len(self._columns))
         self.setHorizontalHeaderLabels(self._columns)
+        self._set_items()
+        self.itemChanged.connect(self._on_item_changed)
 
+    def _set_items(self):
         for row, value in enumerate(repo.get_all()):
             self.setItem(row, 0, QTableWidgetItem(str(value.last_name)))
             self.setItem(row, 1, QTableWidgetItem(str(value.first_name)))
             self.setItem(row, 2, QTableWidgetItem(str(value.middle_name)))
+
+    def _on_item_changed(self, item: QTableWidgetItem):
+        print(type(item))
 
 
 class PropertyLayout:

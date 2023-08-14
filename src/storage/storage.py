@@ -85,5 +85,21 @@ class LaywerRepository:
 
         return lawyers
 
+    def remove(self, id: int):
+        with self:
+            QSqlQuery().exec(f"DELETE FROM lawyers WHERE id={id};")
+
+    def update(self, lawyer: LawyerData, id: int):
+        with self:
+            query = (
+                "UPDATE lawyers "
+                f"SET first_name='{lawyer.first_name}', "
+                f"middle_name='{lawyer.middle_name}', "
+                f"last_name='{lawyer.last_name}' "
+                f"WHERE id={id};"
+            )
+            print(query)
+            QSqlQuery().exec(query)
+
 
 repo = LaywerRepository()
